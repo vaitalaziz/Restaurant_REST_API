@@ -1,3 +1,5 @@
+// Image related parts are copied from Udemy by Max
+
 const multer = require("multer");
 const RecipeModel = require('../models/recipe.model');
 
