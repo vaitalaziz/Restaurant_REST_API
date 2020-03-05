@@ -3,13 +3,18 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const path = require("path");
 
+// locafiles
+const dbConfig = require("../rest-api/config/db.config");
+const url = dbConfig.url;
+
+// Controllers
 const recipeRoutes = require('../rest-api/recipes/routes/recipes.routing');
+const userControllers = require('../rest-api/users/routes/users.routing');
 
 const app = express();
 
 mongoose
-    .connect(
-       "mongodb+srv://vaitalaziz1gmail:PppREEqLOYzUNAYa@aziz2020-mpz6n.mongodb.net/azizRestaurant?retryWrites=true&w=majority", 
+    .connect(url, 
        { useUnifiedTopology: true, useNewUrlParser: true  }
     )
     .then(() => {
@@ -39,4 +44,5 @@ app.use((req, res, next) => {
 
 // routes injected here
 recipeRoutes.routesConfig(app);
+userControllers.routesConfig(app);
 module.exports = app;
